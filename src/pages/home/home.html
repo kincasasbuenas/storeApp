@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar color="morado">
+        <ion-buttons start left>
+      <button ion-button
+              *ngIf="_us.activo()"
+              (click)="_us.cerrar_sesion()" >
+        Salir
+      </button>
+    </ion-buttons>
+
+        <ion-title text-center>
+            Tienda K&L
+        </ion-title>
+         <ion-buttons end>
+
+      <button ion-button icon-only
+              (click)="_cs.ver_carrito()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge color="danger"
+                   class="carrito-numero"
+                   *ngIf="_cs.items.length > 0">
+                {{ _cs.items.length }}
+        </ion-badge>
+      </button>
+
+      &nbsp;
+      &nbsp;
+
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="_productos">
+        <ion-row>
+            <ion-col col-6 *ngFor="let product of _productos.productos" [navParams]="{ producto: product }" [navPush]="productoPage">
+                <img [src]=" product.codigo | imagen " alt="" class="img-list">
+                <p text-center text-capitalize>
+                    {{product.producto}}<br> {{ product.precio_compra | currency:'USD'}}
+                </p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

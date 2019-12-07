@@ -1,0 +1,37 @@
+<!--
+  Generated template for the ProductoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="morado">
+        <ion-title text-center>{{ product.linea }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6>
+                <img src="{{ product.codigo | imagen }}" alt="{{ product.codigo }}">
+            </ion-col>
+            <ion-col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6>
+                <h1 text-center>{{ product.producto }}</h1>
+                <p class="price" text-center>
+                    {{ product.precio_compra | currency:'COP':0 }}
+                </p>
+                <p text-justify>
+                    {{ product.descripcion }}
+                </p>
+                <button ion-button icon-start full round color="morado" (click)="_cs.agregar_carrito(product)">
+                    <ion-icon name="cart"></ion-icon>
+                    Agregar al carro
+                  </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
